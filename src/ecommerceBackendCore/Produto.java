@@ -1,32 +1,39 @@
-public class Produto {
-    private Integer id, estoque;
-    private String nome;
-    private Double preco;
+package ecommerceBackendCore;
 
-    // Construtor que recebe todos os dados
-    public Produto(int id, String nome, Double preco, Integer estoque) {
+
+public class Produto {
+
+    private int id;
+    private String nome;
+    private double preco;
+    private int estoque;
+
+
+    public Produto(int id, String nome, double preco, int estoque) {
         this.id = id;
         this.nome = nome;
-        setPreco(preco);     // usa o setter para validar
-        setEstoque(estoque); // usa o setter para validar
+        setPreco(preco);
+        setEstoque(estoque);
     }
 
-    // Getter e Setter para preco
-    public Double getPreco() {
+
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+
+    public void setPreco(double preco) {
         if (preco < 0) {
             throw new IllegalArgumentException("Preço inválido");
         }
         this.preco = preco;
     }
 
-    // Getter e Setter para estoque
+
     public int getEstoque() {
         return estoque;
     }
+
 
     public void setEstoque(int estoque) {
         if (estoque < 0) {
@@ -35,21 +42,31 @@ public class Produto {
         this.estoque = estoque;
     }
 
-    // Getter e Setter para id
+
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
     }
 
-    // Getter e Setter para nome
+
     public String getNome() {
         return nome;
     }
 
+
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+    public void reduzirEstoque(int quantidade) {
+        if (quantidade > estoque) { // verifica se há estoque suficiente
+            throw new IllegalArgumentException("Estoque insuficiente");
+        }
+        this.estoque -= quantidade; // reduz o estoque
     }
 }
